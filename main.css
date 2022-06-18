@@ -1,0 +1,228 @@
+:root {
+  --var-color-background: #121427;
+  --var-color-secondary: #1d1f35;
+  --var-color-accent: #8b91cc;
+  --var-color-accent-light: #c3c7f0;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  background-color: var(--var-color-background);
+  margin: 0;
+  font-family: sans-serif;
+  position: relative;
+}
+button {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+button {
+  font-size: 1rem;
+  margin: 0;
+  padding: 0;
+}
+.header {
+  padding: 16px 30px;
+  background: var(--var-color-secondary);
+  display: flex;
+  justify-content: flex-end;
+}
+.nav {
+  transition: all 0.35s ease-out;
+  background: var(--var-color-secondary);
+  margin-right: 30px;
+  margin-left: 40px;
+  border-radius: 10px;
+}
+
+.nav-movies-wrapper {
+  display: flex;
+  padding-top: 30px;
+}
+.picker {
+  margin-bottom: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  --var-side-padding: 32px;
+}
+.picker:first-child {
+  border: 0;
+}
+.picker__title {
+  color: var(--var-color-accent);
+  padding: 16px var(--var-side-padding);
+  padding-bottom: 10px;
+  font-weight: normal;
+  font-size: 14px;
+}
+.picker__button,
+.picker__button--picked {
+  transition: all 0.15s ease-out;
+  text-align: left;
+  color: var(--var-color-accent);
+  padding: 10px var(--var-side-padding);
+  font-size: 15px;
+  border-left: 2px solid transparent;
+}
+.picker__button--picked {
+  border-color: var(--var-color-accent-light);
+  color: var(--var-color-accent-light);
+}
+.picker__button:hover,
+.picker__button--picked:hover {
+  transition: all 0.15s ease-in;
+  color: var(--var-color-accent-light);
+}
+.movies {
+  flex: 1;
+  padding-right: 30px;
+  position: relative;
+}
+.movie-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 400px);
+  gap: 16px;
+}
+.movies__title {
+  color: var(--var-color-accent-light);
+  padding-bottom: 16px;
+  display: block;
+}
+
+.movie-preview {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  border-radius: 10px;
+  background: var(--var-color-secondary);
+  margin-bottom: 16px;
+  color: var(--var-color-accent-light);
+}
+
+.movie-preview__image {
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+}
+.movie-preview__buttons {
+  padding-top: 16px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.movie-preview__button {
+  transition: all 0.15s ease-out;
+  background: var(--var-color-accent);
+  color: var(--var-color-background);
+  font-weight: bold;
+  padding: 8px 16px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+}
+.movie-preview__button:hover {
+  transition: all 0.15s ease-in;
+  background: var(--var-color-accent-light);
+  color: var(--var-color-secondary);
+}
+
+.movie-preview__button--picked {
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-weight: bold;
+  border: 1px solid var(--var-color-accent-light);
+  cursor: text;
+}
+
+.movie-preview__loader {
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%);
+  width: 100px;
+  height: 100px;
+  fill: var(--var-color-accent);
+}
+.movie-preview__loader svg {
+  width: 100%;
+  height: 100%;
+}
+
+.hamburger {
+  display: none;
+  cursor: pointer;
+}
+
+.bar1,
+.bar2,
+.bar3 {
+  width: 35px;
+  height: 5px;
+  background-color: var(--var-color-accent-light);
+  margin: 6px 0;
+  transition: 0.4s;
+}
+
+.change .bar1 {
+  -webkit-transform: rotate(-45deg) translate(-9px, 6px);
+  transform: rotate(-45deg) translate(-9px, 6px);
+}
+
+.change .bar2 {
+  opacity: 0;
+}
+
+.change .bar3 {
+  -webkit-transform: rotate(45deg) translate(-8px, -8px);
+  transform: rotate(45deg) translate(-8px, -8px);
+}
+
+@media screen and (max-width: 670px) {
+  .hamburger {
+    display: block;
+  }
+  .header {
+    top: 0;
+    position: fixed;
+    z-index: 2;
+    width: 100%;
+  }
+  .nav-movies-wrapper {
+    margin-top: 62px;
+  }
+  .nav {
+    position: fixed;
+    left: -100%;
+    top: 5px;
+    height: 100vh;
+    z-index: 2;
+    margin-left: 0;
+    width: 200px;
+  }
+  .nav.visible {
+    transition: all 0.35s ease-out;
+    left: 0;
+  }
+  .movies {
+    padding: 0 16px;
+  }
+  .movie-list {
+    display: flex;
+    flex-direction: column;
+  }
+}
